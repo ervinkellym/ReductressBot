@@ -18,15 +18,4 @@ url = feed.entries[0].link
 reddit = praw.Reddit('ReductressBot')
 
 subreddit = reddit.subreddit('reductress')
-# subreddit.submit(title, url=url)
-
-# Fill in current article backlog - remove after 1 successful run
-subreddit.submit(feed.entries[1].title, url=feed.entries[1].link)
-subreddit.submit(feed.entries[2].title, url=feed.entries[2].link)
-subreddit.submit(feed.entries[3].title, url=feed.entries[3].link)
-subreddit.submit(feed.entries[4].title, url=feed.entries[4].link)
-subreddit.submit(feed.entries[5].title, url=feed.entries[5].link)
-subreddit.submit(feed.entries[6].title, url=feed.entries[6].link)
-subreddit.submit(feed.entries[7].title, url=feed.entries[7].link)
-subreddit.submit(feed.entries[8].title, url=feed.entries[8].link)
-subreddit.submit(feed.entries[9].title, url=feed.entries[9].link)
+subreddit.submit(title, url=url)

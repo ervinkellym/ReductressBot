@@ -8,6 +8,11 @@ import os
 reddit = praw.Reddit('ReductressBot')
 
 # Pull the hottest 10 entries from r/aww and print the titles
-subreddit = reddit.subreddit('aww')
-for submission in subreddit.hot(limit=10):
-    print(submission.title)
+# subreddit = reddit.subreddit('aww')
+# for submission in subreddit.hot(limit=10):
+#     print(submission.title)
+
+subreddit = reddit.subreddit('reductress')
+title = 'Test Post - Please Ignore'
+url = 'https://imgur.com/gallery/87dU6iV'
+reddit.subreddit('reddit_api_test').submit(title, url=url)

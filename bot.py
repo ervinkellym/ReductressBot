@@ -17,7 +17,7 @@ url = feed.entries[0].link
 # located in local praw.ini file
 reddit = praw.Reddit('ReductressBot')
 
-# subreddit = reddit.subreddit('reductress')
+subreddit = reddit.subreddit('reductress')
 # subreddit.submit(title, url=url)
 
 # Fill in current article backlog - remove after 1 successful run

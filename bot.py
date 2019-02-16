@@ -14,5 +14,5 @@ reddit = praw.Reddit('ReductressBot')
 
 subreddit = reddit.subreddit('reductress')
 title = 'Test Post - Please Ignore'
-url = 'https://imgur.com/gallery/87dU6iV'
+url = 'https://devpost.com/software/reductressbot'
 reddit.subreddit('reddit_api_test').submit(title, url=url)

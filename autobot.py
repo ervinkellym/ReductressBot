@@ -16,9 +16,9 @@ subreddit = reddit.subreddit('reductress')
 
 # Automatically update every hour
 while(True):
-    # Retrieve the most recent submission made to r/Reductress
+    # Retrieve the most recent submission made to r/ by ReductressBot
     most_recent = 'none'
-    for submission in subreddit.new(limit=1):
+    for submission in reddit.redditor('ReductressBot').submissions.new(limit=1):
         most_recent = submission.title
 
     # Find our place in the feed and post everything since then

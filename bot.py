@@ -14,9 +14,9 @@ entries = feed.entries
 reddit = praw.Reddit('ReductressBot')
 subreddit = reddit.subreddit('reductress')
 
-# Retrieve the most recent submission made to r/Reductress
+# Retrieve the most recent submission made to r/Reductress by ReductressBot
 most_recent = 'none'
-for submission in subreddit.new(limit=1):
+for submission in reddit.redditor('ReductressBot').submissions.new(limit=1):
     most_recent = submission.title
 
 # Post everything until we hit the last article we posted from the feed

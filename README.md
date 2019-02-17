@@ -1,2 +1,2 @@
 # ReductressBot
-Auto-posting Reddit bot for Reductress articles.
+Auto-posting Reddit bot for Reductress articles pulled directly from the RSS Feed

@@ -3,6 +3,7 @@ import pdb
 import re
 import os
 import feedparser
+import time
 
 # Create a feedparser instance for the Reductress RSS feed
 feed = feedparser.parse("http://reductress.com/rss")
@@ -26,5 +27,6 @@ for entry in reversed(entries):
     else:
         if caught_up:
             subreddit.submit(entry.title, url=entry.link)
+            time.sleep(5) # So Reddit doesn't think we are spamming
         else:
             continue

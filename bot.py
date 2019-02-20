@@ -30,3 +30,9 @@ for entry in reversed(entries):
             time.sleep(5) # So Reddit doesn't think we are spamming
         else:
             continue
+
+# In case the whole RSS feed does not contain our most recently posted article title
+if not caught_up:
+    for entry in reversed(entries):
+        subreddit.submit(entry.title, url=entry.link)
+        time.sleep(5) # So Reddit doesn't think we are spamming

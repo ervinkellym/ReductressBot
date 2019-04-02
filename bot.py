@@ -65,8 +65,8 @@ with open('queue.txt') as json_file:
                 queue.append((entry.title, entry.link))
 
     # post the top entry from queue
-    print("Submitted: " + queue[0][0] + " - " + queue[0][1])
-    #subreddit.submit(queue[0][0], url=queue[0][1])
+    #print("Submitted: " + queue[0][0] + " - " + queue[0][1])
+    subreddit.submit(queue[0][0], url=queue[0][1])
 
     # delete top entry from queue
     queue.pop(0)

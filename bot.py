@@ -7,6 +7,9 @@ import time
 import io
 import json
 
+# @Author Laurel Romoser and Kelly Ervin
+# @Date 06/12/2019
+
 # Create a feedparser instance for the Reductress RSS feed
 feed = feedparser.parse("http://reductress.com/rss")
 entries = feed.entries
@@ -21,13 +24,20 @@ most_recent = 'none'
 for submission in reddit.redditor('ReductressBot').submissions.new(limit=1):
     most_recent = submission.title
 
-queue = []
 
 # Open queue.txt file as json file and load file
+queue = []
+last_bat = ""
 with open('queue.txt') as json_file:
     data = json.load(json_file)
     queue = data["queue"]
+    last_bat = data["last_bat_title"]
 
+curr_bat = entries[0].title
+
+# Check first that the RSS feed has a new batch of articles. Only update the
+# queue if new articles are present
+if curr_bat != last_bat:
     # If queue is empty, add everything from the reverse feed to the queue that
     # hasn't already been posted
     if len(queue) == 0:
@@ -41,14 +51,16 @@ with open('queue.txt') as json_file:
                 else:
                     continue
 
-        # In case the whole RSS feed does not contain our most recently posted article title
+        # In case the whole RSS feed does not contain our most recently posted
+        # article title
         if not caught_up:
             for entry in reversed(entries):
                 queue.append((entry.title, entry.link))
     else:
         # Otherwise grab the last item title in the queue
         last = queue[len(queue) - 1][0]
-        # loop through reverse feed, don't add entries to the queue until we hit the last item
+        # loop through reverse feed, don't add entries to the queue until we hit
+        # the last item
         caught_up = False
         for entry in reversed(entries):
             if entry.title == last:
@@ -64,16 +76,14 @@ with open('queue.txt') as json_file:
             for entry in reversed(entries):
                 queue.append((entry.title, entry.link))
 
-    # post the top entry from queue
-    #print("Submitted: " + queue[0][0] + " - " + queue[0][1])
-    subreddit.submit(queue[0][0], url=queue[0][1])
+# Post the top entry from queue and delete
+subreddit.submit(queue[0][0], url=queue[0][1])
+queue.pop(0)
 
-    # delete top entry from queue
-    queue.pop(0)
-
-# write the queue back to the queue.txt file
+# Write the queue back to the queue.txt file
 with open('queue.txt', 'w') as write_file:
     data = {}
     data["queue"] = queue
+    data["last_bat_title"] = curr_bat
     text = json.dumps(data, indent=4)
     write_file.write(text)

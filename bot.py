@@ -76,9 +76,18 @@ if curr_bat != last_bat:
             for entry in reversed(entries):
                 queue.append((entry.title, entry.link))
 
+<<<<<<< HEAD
 # Post the top entry from queue and delete
 subreddit.submit(queue[0][0], url=queue[0][1])
 queue.pop(0)
+=======
+    # post the top entry from queue
+    print("Submitted: " + queue[0][0] + " - " + queue[0][1])
+    #subreddit.submit(queue[0][0], url=queue[0][1])
+
+    # delete top entry from queue
+    queue.pop(0)
+>>>>>>> parent of fb153b0... Forgot to comment out the testing statements and added submission to reddit
 
 # Write the queue back to the queue.txt file
 with open('queue.txt', 'w') as write_file:
